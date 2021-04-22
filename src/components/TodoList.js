@@ -6,20 +6,6 @@ export default function TodoList() {
 
   const pluralize = count =>
     count > 1 ? `There are ${count} todos.` : `There is ${count} todo.`;
-
-  let header =
-    state.todos.length === 0 ? (
-      <h4>Yay! All todos are done! Take a rest!</h4>
-    ) : (
-      <div className="row">
-        <div className="col-md-8">
-          <h5>Todo List</h5>
-        </div>
-        <div className="col-md-4">
-          <span className="float-right">{pluralize(state.todos.length)}</span>
-        </div>
-      </div>
-    );
     
   return (
     <div className="row">
@@ -27,7 +13,19 @@ export default function TodoList() {
         <div className="row">
           <div className="col-md-12">
             <br />
-            {header}
+              { state.todos.length === 0 ? 
+                (
+                <h4>Yay! All todos are done! Take a rest!</h4>
+                ) : (
+                <div className="row">
+                  <div className="col-md-8">
+                    <h5>Todo List</h5>
+                  </div>
+                  <div className="col-md-4">
+                    <span className="float-right">{pluralize(state.todos.length)}</span>
+                  </div>
+                </div>
+              )}
           </div>
         </div>
         <div className="row">
