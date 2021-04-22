@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import Store from "../context";
-import { TodoHeader } from "./TodoHeader";
 
 export default function TodoList() {
   const { state, dispatch } = useContext(Store);
@@ -12,10 +11,16 @@ export default function TodoList() {
     state.todos.length === 0 ? (
       <h4>Yay! All todos are done! Take a rest!</h4>
     ) : (
-      <TodoHeader>
-        <span className="float-right">{pluralize(state.todos.length)}</span>
-      </TodoHeader>
+      <div className="row">
+        <div className="col-md-8">
+          <h5>Todo List</h5>
+        </div>
+        <div className="col-md-4">
+          <span className="float-right">{pluralize(state.todos.length)}</span>
+        </div>
+      </div>
     );
+    
   return (
     <div className="row">
       <div className="col-md-12">
