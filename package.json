@@ -6,6 +6,7 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "axios": "^0.21.1",
     "enzyme": "3.7.0",
     "enzyme-adapter-react-16": "1.6.0",
     "react": "next",
