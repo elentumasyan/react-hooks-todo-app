@@ -33,8 +33,8 @@ export function APIContextProvider({ children }) {
 
   const completeTodo = async (todo) => {
       try {
-        await axios.put(COMPLETE_URL, todo);
-        fetchTodos()
+        const { data } = await axios.put(COMPLETE_URL, todo);
+        setTodos(data);
       } catch {
         console.log('Error: Could not complete the todo.')
       }
