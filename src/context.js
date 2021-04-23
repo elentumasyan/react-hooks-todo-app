@@ -3,7 +3,7 @@ import axios from "axios";
 
 const BASE_URL = 'http://135.181.252.247:8080/'
 const TODO_URL = BASE_URL + 'todo'
-const COMPLETE_URL = BASE_URL + 'complete'
+const COMPLETE_URL = BASE_URL + 'todo/complete'
 
 const APIContext = createContext();
 
