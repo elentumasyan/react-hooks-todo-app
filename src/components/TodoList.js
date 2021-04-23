@@ -3,7 +3,7 @@ import { useAPI } from "../context";
 import { TodoHeader } from "./TodoHeader";
 
 export default function TodoList() {
-  const { todos, fetchTodos } = useAPI();
+  const { todos, fetchTodos, completeTodo } = useAPI();
   React.useEffect(() => { fetchTodos() }, [])
 
   const pluralize = count =>
@@ -29,13 +29,13 @@ export default function TodoList() {
         <div className="row">
           <div className="col-md-12">
             <ul className="list-group">
-              {todos.map(({ todo: t}) => (
-                <li key={t} className="list-group-item">
-                  {t}
+              {todos.map(({ todo }, index) => (
+                <li key={index} className="list-group-item">
+                  {todo}
                   <button
                     className="float-right btn btn-danger btn-sm"
                     style={{ marginLeft: 10 }}
-                    onClick={() => alert(' maybe later ')}
+                    onClick={() => completeTodo({ todo })}
                   >
                     Complete
                   </button>

@@ -1,7 +1,9 @@
 import React, { useContext, useState, useEffect, createContext } from "react";
 import axios from "axios";
 
-const BASE_URL = 'http://135.181.252.247:8080/todo'
+const BASE_URL = 'http://135.181.252.247:8080/'
+const TODO_URL = BASE_URL + 'todo'
+const COMPLETE_URL = BASE_URL + 'complete'
 
 const APIContext = createContext();
 
@@ -12,23 +14,36 @@ export function APIContextProvider({ children }) {
   }, []);
 
   const fetchTodos = async () => {
-      // const { data } = await axios.get(
-      //   BASE_URL
-      // );
-      setTodos([ { "todo": "Clean dishes" } ]);
+      try {
+        const { data } = await axios.get(TODO_URL);
+        setTodos(data);
+      } catch {
+        console.log('Error: Could not fetch todo list.')
+      }
   }
 
   const postTodo = async (todo) => {
-      // const { data } = await axios.post(
-      //   BASE_URL, todo
-      // );
-      setTodos([...todos, todo ]);
+      try {
+        await axios.post(TODO_URL, todo);
+        fetchTodos()
+      } catch {
+        console.log('Error: Could not add a new todo.')
+      }
+  }
+
+  const completeTodo = async (todo) => {
+      try {
+        await axios.put(COMPLETE_URL, todo);
+        fetchTodos()
+      } catch {
+        console.log('Error: Could not complete the todo.')
+      }
   }
 
   return (
     <APIContext.Provider
       value={{
-        todos, fetchTodos, postTodo
+        todos, fetchTodos, postTodo, completeTodo
       }}
     >
       {children}
